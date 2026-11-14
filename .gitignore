@@ -1,0 +1,86 @@
+
+# =====================================
+# Datark RF Guardian — .gitignore
+# =====================================
+
+# Node.js / React / Vite
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+coverage/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Python virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+
+# IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.orig
+*.pyc
+
+# Local databases
+*.sqlite
+*.sqlite3
+*.db
+
+# Generated RF data
+rf-engine/exports/
+rf-engine/output/
+rf-engine/cache/
+
+# Test artifacts
+test-results/
+playwright-report/
+
+rf-engine/data.json
+**/.deps-ok
+**/.npm-ready
+rf-engine/reports/
+rf-engine/generated/

@@ -1,0 +1,37 @@
+flowchart LR
+    %% Вставка в diagrams.net: Arrange -> Insert -> Advanced -> Mermaid
+    subgraph EXT[Внешний сегмент]
+       BS[Базовая станция оператора] <--> DA[Направленная донорная антенна]
+    end
+    subgraph RF[Промежуточный сегмент]
+       FILTER[Полосовые фильтры / дуплексеры] <--> REP[Согласованный репитер AGC/ALC]
+    end
+    subgraph INS[Внутренний сегмент DAS]
+       SPL[Делитель / ответвитель] <--> P1[Панель 1]
+       SPL <--> P2[Панель 2]
+       SPL <--> P3[Панель 3 — опция]
+       P1 <--> USERS[Смартфоны персонала]
+    end
+    DA <-->|UL/DL| FILTER
+    REP <-->|UL/DL| SPL
+
+    subgraph CRIT[Независимая существующая GSM/SMS-линия — НЕ МЕНЯТЬ]
+       GA[Существующая GSM-антенна] --> GM[GSM-модем] --> SMS[Аварийные SMS]
+    end
+
+    subgraph WIFI[Независимый Wi-Fi-сегмент]
+       LAN[ЛВС / интернет] --> POE[PoE-коммутатор] --> AP[Wi-Fi AP] --> WUSERS[Устройства персонала]
+    end
+
+    subgraph SW[Мониторинг и проектирование]
+       T[SDR / диагностические данные / симулятор] --> PY[Python FastAPI / расчёт покрытия / анализ]
+       PY --> UI[React: карта / анализ]
+       UI --> TXT[TXT-отчёт по объекту]
+    end
+
+    classDef critical fill:#dcf6e5,stroke:#259768,color:#124c3c
+    classDef active fill:#e5f0ff,stroke:#447bd3,color:#173e73
+    classDef warn fill:#fff0d2,stroke:#d4a34b,color:#6a4b0f
+    class GA,GM,SMS critical
+    class FILTER,REP warn
+    class BS,DA,SPL,P1,P2,P3,USERS,LAN,POE,AP,WUSERS active
